@@ -12,15 +12,17 @@ export default class Page extends Component {
                 <button className={'btn'} onClick={::this.onYearBtnClick}>2017</button>
                 <button className={'btn'} onClick={::this.onYearBtnClick}>2018</button>
             </p>
+            <p>Loading: {this.props.fetching ? 'loading' : 'finished'}</p>
         </div>
     }
 
     onYearBtnClick(e){
-        this.props.setYear(+e.target.textContent)
+        this.props.getPhotos(+e.target.textContent)
     }
 }
 Page.propTypes = {
     year: PropTypes.number.isRequired,
     photos: PropTypes.array.isRequired,
-    setYear: PropTypes.func.isRequired
+    fetching: PropTypes.bool.isRequired,
+    getPhotos: PropTypes.func.isRequired
 }

@@ -8,11 +8,11 @@ import * as pageActions from '../actions/PageActions'
 class App extends Component {
     render() {
         const {name} = this.props
-        const {year, photo} = this.props
-        const {setYear} = this.props.pageActions
+        const {year, photos} = this.props
+        const {getPhotos} = this.props.pageActions
         return <div>
             <User className={'user'} name={name}/>
-            <Page className={'page'} year={year} photos={photo} setYear={setYear}/>
+            <Page className={'page'} year={year} photos={photos} getPhotos={getPhotos} fetching={this.props.fetching}/>
         </div>
     }
 }
@@ -21,7 +21,8 @@ function mapStateToProps(state) {
     return {
         name: state.user.name,
         year: state.page.year,
-        photo: state.page.photo
+        photos: state.page.photos,
+        fetching: state.page.fetching
     }
 }
 
